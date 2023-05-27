@@ -1,4 +1,4 @@
-package uk.tw.energy.price.plan;
+package uk.tw.energy.price.plan.service;
 
 import org.springframework.stereotype.Service;
 

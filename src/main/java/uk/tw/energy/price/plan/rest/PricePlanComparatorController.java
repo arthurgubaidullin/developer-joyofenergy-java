@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uk.tw.energy.accounts.AccountService;
-import uk.tw.energy.price.plan.PricePlanService;
+import uk.tw.energy.price.plan.service.PricePlanService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
