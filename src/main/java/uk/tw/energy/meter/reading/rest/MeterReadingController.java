@@ -28,7 +28,7 @@ public class MeterReadingController {
 
     @PostMapping("/store")
     public ResponseEntity storeReadings(@RequestBody MeterReadingsDto meterReadings) {
-        if (!(meterReadings.isMeterReadingsValid())) {
+        if (!(meterReadings.isValid())) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         meterReadingService.storeReadings(meterReadings.getSmartMeterId(), meterReadings.getElectricityReadings());

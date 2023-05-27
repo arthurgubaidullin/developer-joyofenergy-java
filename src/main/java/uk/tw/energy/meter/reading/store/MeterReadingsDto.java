@@ -17,7 +17,7 @@ public class MeterReadingsDto {
         this.electricityReadings = electricityReadings;
     }
 
-    public boolean isMeterReadingsValid() {
+    public boolean isValid() {
         String smartMeterId = this.getSmartMeterId();
         List<ElectricityReadingDto> electricityReadings = this.getElectricityReadings();
         return smartMeterId != null && !smartMeterId.isEmpty()
