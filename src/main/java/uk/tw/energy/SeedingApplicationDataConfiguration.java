@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
-import uk.tw.energy.meter.reading.domain.ElectricityReading;
+import uk.tw.energy.meter.reading.domain.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.generator.ElectricityReadingsGenerator;
 import uk.tw.energy.price.plan.domain.PricePlan;
 
@@ -36,8 +36,8 @@ public class SeedingApplicationDataConfiguration {
     }
 
     @Bean
-    public Map<String, List<ElectricityReading>> perMeterElectricityReadings() {
-        final Map<String, List<ElectricityReading>> readings = new HashMap<>();
+    public Map<String, List<ElectricityReadingDto>> perMeterElectricityReadings() {
+        final Map<String, List<ElectricityReadingDto>> readings = new HashMap<>();
         final ElectricityReadingsGenerator electricityReadingsGenerator = new ElectricityReadingsGenerator();
         smartMeterToPricePlanAccounts()
                 .keySet()

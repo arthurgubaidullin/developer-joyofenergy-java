@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
 import uk.tw.energy.account.service.AccountService;
-import uk.tw.energy.meter.reading.domain.ElectricityReading;
+import uk.tw.energy.meter.reading.domain.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 import uk.tw.energy.meter.reading.service.MeterReadingService;
 import uk.tw.energy.price.plan.domain.PricePlan;
@@ -54,9 +54,9 @@ public class PricePlanComparatorControllerTest {
         @Test
         public void shouldCalculateCostForMeterReadingsForEveryPricePlan() {
 
-                ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(3600),
+                ElectricityReadingDto electricityReading = new ElectricityReadingDto(Instant.now().minusSeconds(3600),
                                 BigDecimal.valueOf(15.0));
-                ElectricityReading otherReading = new ElectricityReading(Instant.now(), BigDecimal.valueOf(5.0));
+                ElectricityReadingDto otherReading = new ElectricityReadingDto(Instant.now(), BigDecimal.valueOf(5.0));
                 meterReadingService.storeReadings(SMART_METER_ID, Arrays.asList(electricityReading, otherReading));
 
                 Map<String, BigDecimal> expectedPricePlanToCost = new HashMap<>();
@@ -73,9 +73,9 @@ public class PricePlanComparatorControllerTest {
         @Test
         public void shouldRecommendCheapestPricePlansNoLimitForMeterUsage() throws Exception {
 
-                ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(1800),
+                ElectricityReadingDto electricityReading = new ElectricityReadingDto(Instant.now().minusSeconds(1800),
                                 BigDecimal.valueOf(35.0));
-                ElectricityReading otherReading = new ElectricityReading(Instant.now(), BigDecimal.valueOf(3.0));
+                ElectricityReadingDto otherReading = new ElectricityReadingDto(Instant.now(), BigDecimal.valueOf(3.0));
                 meterReadingService.storeReadings(SMART_METER_ID, Arrays.asList(electricityReading, otherReading));
 
                 List<Map.Entry<String, BigDecimal>> expectedPricePlanToCost = new ArrayList<>();
@@ -90,9 +90,9 @@ public class PricePlanComparatorControllerTest {
         @Test
         public void shouldRecommendLimitedCheapestPricePlansForMeterUsage() throws Exception {
 
-                ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(2700),
+                ElectricityReadingDto electricityReading = new ElectricityReadingDto(Instant.now().minusSeconds(2700),
                                 BigDecimal.valueOf(5.0));
-                ElectricityReading otherReading = new ElectricityReading(Instant.now(), BigDecimal.valueOf(20.0));
+                ElectricityReadingDto otherReading = new ElectricityReadingDto(Instant.now(), BigDecimal.valueOf(20.0));
                 meterReadingService.storeReadings(SMART_METER_ID, Arrays.asList(electricityReading, otherReading));
 
                 List<Map.Entry<String, BigDecimal>> expectedPricePlanToCost = new ArrayList<>();
@@ -106,9 +106,9 @@ public class PricePlanComparatorControllerTest {
         @Test
         public void shouldRecommendCheapestPricePlansMoreThanLimitAvailableForMeterUsage() throws Exception {
 
-                ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(3600),
+                ElectricityReadingDto electricityReading = new ElectricityReadingDto(Instant.now().minusSeconds(3600),
                                 BigDecimal.valueOf(25.0));
-                ElectricityReading otherReading = new ElectricityReading(Instant.now(), BigDecimal.valueOf(3.0));
+                ElectricityReadingDto otherReading = new ElectricityReadingDto(Instant.now(), BigDecimal.valueOf(3.0));
                 meterReadingService.storeReadings(SMART_METER_ID, Arrays.asList(electricityReading, otherReading));
 
                 List<Map.Entry<String, BigDecimal>> expectedPricePlanToCost = new ArrayList<>();

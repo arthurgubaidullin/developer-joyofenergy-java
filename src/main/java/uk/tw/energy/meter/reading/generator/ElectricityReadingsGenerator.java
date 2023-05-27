@@ -8,23 +8,24 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-import uk.tw.energy.meter.reading.domain.ElectricityReading;
+import uk.tw.energy.meter.reading.domain.ElectricityReadingDto;
 
 public class ElectricityReadingsGenerator {
 
-    public List<ElectricityReading> generate(int number) {
-        List<ElectricityReading> readings = new ArrayList<>();
+    public List<ElectricityReadingDto> generate(int number) {
+        List<ElectricityReadingDto> readings = new ArrayList<>();
         Instant now = Instant.now();
 
         Random readingRandomiser = new Random();
         for (int i = 0; i < number; i++) {
             double positiveRandomValue = Math.abs(readingRandomiser.nextGaussian());
             BigDecimal randomReading = BigDecimal.valueOf(positiveRandomValue).setScale(4, RoundingMode.CEILING);
-            ElectricityReading electricityReading = new ElectricityReading(now.minusSeconds(i * 10), randomReading);
+            ElectricityReadingDto electricityReading = new ElectricityReadingDto(now.minusSeconds(i * 10),
+                    randomReading);
             readings.add(electricityReading);
         }
 
-        readings.sort(Comparator.comparing(ElectricityReading::getTime));
+        readings.sort(Comparator.comparing(ElectricityReadingDto::getTime));
         return readings;
     }
 }

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
 import uk.tw.energy.meter.reading.builder.MeterReadingsBuilder;
-import uk.tw.energy.meter.reading.domain.ElectricityReading;
+import uk.tw.energy.meter.reading.domain.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 import uk.tw.energy.meter.reading.service.MeterReadingService;
 import uk.tw.energy.meter.reading.store.MeterReadingsDto;
@@ -65,7 +65,7 @@ public class MeterReadingControllerTest {
         meterReadingController.storeReadings(meterReadings);
         meterReadingController.storeReadings(otherMeterReadings);
 
-        List<ElectricityReading> expectedElectricityReadings = new ArrayList<>();
+        List<ElectricityReadingDto> expectedElectricityReadings = new ArrayList<>();
         expectedElectricityReadings.addAll(meterReadings.getElectricityReadings());
         expectedElectricityReadings.addAll(otherMeterReadings.getElectricityReadings());
 

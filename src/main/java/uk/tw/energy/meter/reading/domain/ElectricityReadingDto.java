@@ -3,15 +3,15 @@ package uk.tw.energy.meter.reading.domain;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-public class ElectricityReading {
+public class ElectricityReadingDto {
 
     private Instant time;
     private BigDecimal reading; // kW
 
-    public ElectricityReading() {
+    public ElectricityReadingDto() {
     }
 
-    public ElectricityReading(Instant time, BigDecimal reading) {
+    public ElectricityReadingDto(Instant time, BigDecimal reading) {
         this.time = time;
         this.reading = reading;
     }

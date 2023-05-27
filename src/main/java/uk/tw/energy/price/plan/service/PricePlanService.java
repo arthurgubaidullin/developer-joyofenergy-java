@@ -2,7 +2,7 @@ package uk.tw.energy.price.plan.service;
 
 import org.springframework.stereotype.Service;
 
-import uk.tw.energy.meter.reading.domain.ElectricityReading;
+import uk.tw.energy.meter.reading.domain.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.service.MeterReadingService;
 import uk.tw.energy.price.plan.domain.PricePlan;
 
@@ -28,7 +28,7 @@ public class PricePlanService {
 
     public Optional<Map<String, BigDecimal>> getConsumptionCostOfElectricityReadingsForEachPricePlan(
             String smartMeterId) {
-        Optional<List<ElectricityReading>> electricityReadings = meterReadingService.getReadings(smartMeterId);
+        Optional<List<ElectricityReadingDto>> electricityReadings = meterReadingService.getReadings(smartMeterId);
 
         if (!electricityReadings.isPresent()) {
             return Optional.empty();
@@ -38,7 +38,7 @@ public class PricePlanService {
                 Collectors.toMap(PricePlan::getPlanName, t -> calculateCost(electricityReadings.get(), t))));
     }
 
-    private BigDecimal calculateCost(List<ElectricityReading> electricityReadings, PricePlan pricePlan) {
+    private BigDecimal calculateCost(List<ElectricityReadingDto> electricityReadings, PricePlan pricePlan) {
         BigDecimal average = calculateAverageReading(electricityReadings);
         BigDecimal timeElapsed = calculateTimeElapsed(electricityReadings);
 
@@ -46,20 +46,20 @@ public class PricePlanService {
         return averagedCost.multiply(pricePlan.getUnitRate());
     }
 
-    private BigDecimal calculateAverageReading(List<ElectricityReading> electricityReadings) {
+    private BigDecimal calculateAverageReading(List<ElectricityReadingDto> electricityReadings) {
         BigDecimal summedReadings = electricityReadings.stream()
-                .map(ElectricityReading::getReading)
+                .map(ElectricityReadingDto::getReading)
                 .reduce(BigDecimal.ZERO, (reading, accumulator) -> reading.add(accumulator));
 
         return summedReadings.divide(BigDecimal.valueOf(electricityReadings.size()), RoundingMode.HALF_UP);
     }
 
-    private BigDecimal calculateTimeElapsed(List<ElectricityReading> electricityReadings) {
-        ElectricityReading first = electricityReadings.stream()
-                .min(Comparator.comparing(ElectricityReading::getTime))
+    private BigDecimal calculateTimeElapsed(List<ElectricityReadingDto> electricityReadings) {
+        ElectricityReadingDto first = electricityReadings.stream()
+                .min(Comparator.comparing(ElectricityReadingDto::getTime))
                 .get();
-        ElectricityReading last = electricityReadings.stream()
-                .max(Comparator.comparing(ElectricityReading::getTime))
+        ElectricityReadingDto last = electricityReadings.stream()
+                .max(Comparator.comparing(ElectricityReadingDto::getTime))
                 .get();
 
         return BigDecimal.valueOf(Duration.between(first.getTime(), last.getTime()).getSeconds() / 3600.0);

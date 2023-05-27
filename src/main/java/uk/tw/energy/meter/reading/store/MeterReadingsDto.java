@@ -2,22 +2,22 @@ package uk.tw.energy.meter.reading.store;
 
 import java.util.List;
 
-import uk.tw.energy.meter.reading.domain.ElectricityReading;
+import uk.tw.energy.meter.reading.domain.ElectricityReadingDto;
 
 public class MeterReadingsDto {
 
-    private List<ElectricityReading> electricityReadings;
+    private List<ElectricityReadingDto> electricityReadings;
     private String smartMeterId;
 
     public MeterReadingsDto() {
     }
 
-    public MeterReadingsDto(String smartMeterId, List<ElectricityReading> electricityReadings) {
+    public MeterReadingsDto(String smartMeterId, List<ElectricityReadingDto> electricityReadings) {
         this.smartMeterId = smartMeterId;
         this.electricityReadings = electricityReadings;
     }
 
-    public List<ElectricityReading> getElectricityReadings() {
+    public List<ElectricityReadingDto> getElectricityReadings() {
         return electricityReadings;
     }
 

@@ -3,7 +3,7 @@ package uk.tw.energy.meter.reading.get;
 import java.util.List;
 import java.util.Optional;
 
-import uk.tw.energy.meter.reading.domain.ElectricityReading;
+import uk.tw.energy.meter.reading.domain.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 
 public class GetMeterReading {
@@ -14,7 +14,7 @@ public class GetMeterReading {
         this.repository = repository;
     }
 
-    public Optional<List<ElectricityReading>> execute(String smartMeterId) {
+    public Optional<List<ElectricityReadingDto>> execute(String smartMeterId) {
         return this.repository.getReadings(smartMeterId);
     }
 

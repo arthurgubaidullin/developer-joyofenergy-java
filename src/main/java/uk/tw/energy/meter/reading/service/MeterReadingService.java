@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import uk.tw.energy.meter.reading.domain.ElectricityReading;
+import uk.tw.energy.meter.reading.domain.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.get.GetMeterReading;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 import uk.tw.energy.meter.reading.store.StoreMeterReading;
@@ -21,11 +21,11 @@ public class MeterReadingService {
         this.getMeterReading = new GetMeterReading(repository);
     }
 
-    public Optional<List<ElectricityReading>> getReadings(String smartMeterId) {
+    public Optional<List<ElectricityReadingDto>> getReadings(String smartMeterId) {
         return this.getMeterReading.execute(smartMeterId);
     }
 
-    public void storeReadings(String smartMeterId, List<ElectricityReading> electricityReadings) {
+    public void storeReadings(String smartMeterId, List<ElectricityReadingDto> electricityReadings) {
         storeMeterReading.execute(smartMeterId, electricityReadings);
     }
 }

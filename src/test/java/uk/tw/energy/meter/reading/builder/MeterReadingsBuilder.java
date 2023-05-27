@@ -1,6 +1,6 @@
 package uk.tw.energy.meter.reading.builder;
 
-import uk.tw.energy.meter.reading.domain.ElectricityReading;
+import uk.tw.energy.meter.reading.domain.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.generator.ElectricityReadingsGenerator;
 import uk.tw.energy.meter.reading.store.MeterReadingsDto;
 
@@ -12,7 +12,7 @@ public class MeterReadingsBuilder {
     private static final String DEFAULT_METER_ID = "id";
 
     private String smartMeterId = DEFAULT_METER_ID;
-    private List<ElectricityReading> electricityReadings = new ArrayList<>();
+    private List<ElectricityReadingDto> electricityReadings = new ArrayList<>();
 
     public MeterReadingsBuilder setSmartMeterId(String smartMeterId) {
         this.smartMeterId = smartMeterId;
