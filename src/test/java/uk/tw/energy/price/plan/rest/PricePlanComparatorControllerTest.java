@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 
 import uk.tw.energy.account.service.AccountService;
 import uk.tw.energy.meter.reading.domain.ElectricityReading;
+import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 import uk.tw.energy.meter.reading.service.MeterReadingService;
 import uk.tw.energy.price.plan.domain.PricePlan;
 import uk.tw.energy.price.plan.service.PricePlanService;
@@ -30,10 +31,12 @@ public class PricePlanComparatorControllerTest {
         private PricePlanComparatorController controller;
         private MeterReadingService meterReadingService;
         private AccountService accountService;
+        private MeterReadingRepository meterReadingRepository;
 
         @BeforeEach
         public void setUp() {
-                meterReadingService = new MeterReadingService(new HashMap<>());
+                meterReadingRepository = new MeterReadingRepository(new HashMap<>());
+                meterReadingService = new MeterReadingService(meterReadingRepository);
                 PricePlan pricePlan1 = new PricePlan(PRICE_PLAN_1_ID, null, BigDecimal.TEN, null);
                 PricePlan pricePlan2 = new PricePlan(PRICE_PLAN_2_ID, null, BigDecimal.ONE, null);
                 PricePlan pricePlan3 = new PricePlan(PRICE_PLAN_3_ID, null, BigDecimal.valueOf(2), null);
