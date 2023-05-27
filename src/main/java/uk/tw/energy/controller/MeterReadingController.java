@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import uk.tw.energy.domain.ElectricityReading;
+
 import uk.tw.energy.domain.MeterReadings;
+import uk.tw.energy.meter.reading.ElectricityReading;
 import uk.tw.energy.meter.reading.MeterReadingService;
 
 import java.util.List;

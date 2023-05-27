@@ -1,7 +1,5 @@
 package uk.tw.energy.meter.reading;
 
-import uk.tw.energy.domain.ElectricityReading;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;

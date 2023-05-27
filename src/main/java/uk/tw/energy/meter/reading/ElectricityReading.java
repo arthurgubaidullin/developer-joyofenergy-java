@@ -1,4 +1,4 @@
-package uk.tw.energy.domain;
+package uk.tw.energy.meter.reading;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -8,7 +8,8 @@ public class ElectricityReading {
     private Instant time;
     private BigDecimal reading; // kW
 
-    public ElectricityReading() { }
+    public ElectricityReading() {
+    }
 
     public ElectricityReading(Instant time, BigDecimal reading) {
         this.time = time;
