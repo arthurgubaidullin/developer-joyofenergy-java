@@ -2,6 +2,8 @@ package uk.tw.energy.meter.reading;
 
 import org.springframework.stereotype.Service;
 
+import uk.tw.energy.meter.reading.domain.ElectricityReading;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
