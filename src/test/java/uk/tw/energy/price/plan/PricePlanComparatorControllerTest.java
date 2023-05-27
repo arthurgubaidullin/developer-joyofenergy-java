@@ -1,4 +1,4 @@
-package uk.tw.energy.controller;
+package uk.tw.energy.price.plan;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,6 +8,7 @@ import uk.tw.energy.accounts.AccountService;
 import uk.tw.energy.meter.reading.ElectricityReading;
 import uk.tw.energy.meter.reading.MeterReadingService;
 import uk.tw.energy.price.plan.PricePlan;
+import uk.tw.energy.price.plan.PricePlanComparatorController;
 import uk.tw.energy.price.plan.PricePlanService;
 
 import java.math.BigDecimal;
