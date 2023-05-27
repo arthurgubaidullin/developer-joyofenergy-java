@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 
 import uk.tw.energy.meter.reading.domain.ElectricityReading;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
+import uk.tw.energy.meter.reading.store.StoreMeterReading;
 
 @Service
 public class MeterReadingService {
 
     private final MeterReadingRepository repository;
+    private final StoreMeterReading storeMeterReading;
 
     public MeterReadingService(MeterReadingRepository repository) {
         this.repository = repository;
+        this.storeMeterReading = new StoreMeterReading(repository);
     }
 
     public Optional<List<ElectricityReading>> getReadings(String smartMeterId) {
@@ -22,6 +25,6 @@ public class MeterReadingService {
     }
 
     public void storeReadings(String smartMeterId, List<ElectricityReading> electricityReadings) {
-        this.repository.storeReadings(smartMeterId, electricityReadings);
+        storeMeterReading.execute(smartMeterId, electricityReadings);
     }
 }
