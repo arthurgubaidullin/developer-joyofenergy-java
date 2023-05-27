@@ -8,7 +8,7 @@ import uk.tw.energy.accounts.AccountService;
 import uk.tw.energy.domain.ElectricityReading;
 import uk.tw.energy.domain.PricePlan;
 import uk.tw.energy.meter.reading.MeterReadingService;
-import uk.tw.energy.service.PricePlanService;
+import uk.tw.energy.price.plan.PricePlanService;
 
 import java.math.BigDecimal;
 import java.time.Instant;
