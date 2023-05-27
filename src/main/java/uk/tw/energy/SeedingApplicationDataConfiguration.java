@@ -9,7 +9,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import uk.tw.energy.meter.reading.domain.ElectricityReading;
 import uk.tw.energy.meter.reading.generator.ElectricityReadingsGenerator;
-import uk.tw.energy.price.plan.PricePlan;
+import uk.tw.energy.price.plan.domain.PricePlan;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
