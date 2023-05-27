@@ -3,7 +3,7 @@ package uk.tw.energy.meter.reading;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import uk.tw.energy.meter.reading.MeterReadingService;
+import uk.tw.energy.meter.reading.service.MeterReadingService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
