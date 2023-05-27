@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import uk.tw.energy.meter.reading.builder.MeterReadingsBuilder;
-import uk.tw.energy.meter.reading.domain.MeterReadings;
+import uk.tw.energy.meter.reading.store.MeterReadings;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

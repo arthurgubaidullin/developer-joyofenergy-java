@@ -1,6 +1,8 @@
-package uk.tw.energy.meter.reading.domain;
+package uk.tw.energy.meter.reading.store;
 
 import java.util.List;
+
+import uk.tw.energy.meter.reading.domain.ElectricityReading;
 
 public class MeterReadings {
 
