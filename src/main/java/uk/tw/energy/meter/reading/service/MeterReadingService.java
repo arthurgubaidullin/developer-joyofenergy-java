@@ -7,14 +7,16 @@ import org.springframework.stereotype.Service;
 
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.get.GetMeterReading;
+import uk.tw.energy.meter.reading.get.GetMeterReadingService;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 import uk.tw.energy.meter.reading.store.StoreMeterReading;
+import uk.tw.energy.meter.reading.store.StoreMeterReadingService;
 
 @Service
 public class MeterReadingService {
 
-    private final StoreMeterReading storeMeterReading;
-    private final GetMeterReading getMeterReading;
+    private final StoreMeterReadingService storeMeterReading;
+    private final GetMeterReadingService getMeterReading;
 
     public MeterReadingService(MeterReadingRepository repository) {
         this.storeMeterReading = new StoreMeterReading(repository);

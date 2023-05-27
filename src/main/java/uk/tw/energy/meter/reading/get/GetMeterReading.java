@@ -6,7 +6,7 @@ import java.util.Optional;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 
-public class GetMeterReading {
+public class GetMeterReading implements GetMeterReadingService {
 
     private final MeterReadingRepository repository;
 

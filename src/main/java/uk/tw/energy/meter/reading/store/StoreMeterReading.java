@@ -5,7 +5,7 @@ import java.util.List;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 
-public class StoreMeterReading {
+public class StoreMeterReading implements StoreMeterReadingService {
 
     private final MeterReadingRepository meterReadingRepository;
 
