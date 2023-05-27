@@ -3,9 +3,10 @@ package uk.tw.energy.controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
+
+import uk.tw.energy.accounts.AccountService;
 import uk.tw.energy.domain.ElectricityReading;
 import uk.tw.energy.domain.PricePlan;
-import uk.tw.energy.service.AccountService;
 import uk.tw.energy.service.MeterReadingService;
 import uk.tw.energy.service.PricePlanService;
 
@@ -50,7 +51,8 @@ public class PricePlanComparatorControllerTest {
     @Test
     public void shouldCalculateCostForMeterReadingsForEveryPricePlan() {
 
-        ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(3600), BigDecimal.valueOf(15.0));
+        ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(3600),
+                BigDecimal.valueOf(15.0));
         ElectricityReading otherReading = new ElectricityReading(Instant.now(), BigDecimal.valueOf(5.0));
         meterReadingService.storeReadings(SMART_METER_ID, Arrays.asList(electricityReading, otherReading));
 
@@ -68,7 +70,8 @@ public class PricePlanComparatorControllerTest {
     @Test
     public void shouldRecommendCheapestPricePlansNoLimitForMeterUsage() throws Exception {
 
-        ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(1800), BigDecimal.valueOf(35.0));
+        ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(1800),
+                BigDecimal.valueOf(35.0));
         ElectricityReading otherReading = new ElectricityReading(Instant.now(), BigDecimal.valueOf(3.0));
         meterReadingService.storeReadings(SMART_METER_ID, Arrays.asList(electricityReading, otherReading));
 
@@ -77,14 +80,15 @@ public class PricePlanComparatorControllerTest {
         expectedPricePlanToCost.add(new AbstractMap.SimpleEntry<>(PRICE_PLAN_3_ID, BigDecimal.valueOf(76.0)));
         expectedPricePlanToCost.add(new AbstractMap.SimpleEntry<>(PRICE_PLAN_1_ID, BigDecimal.valueOf(380.0)));
 
-        assertThat(controller.recommendCheapestPricePlans(SMART_METER_ID, null).getBody()).isEqualTo(expectedPricePlanToCost);
+        assertThat(controller.recommendCheapestPricePlans(SMART_METER_ID, null).getBody())
+                .isEqualTo(expectedPricePlanToCost);
     }
-
 
     @Test
     public void shouldRecommendLimitedCheapestPricePlansForMeterUsage() throws Exception {
 
-        ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(2700), BigDecimal.valueOf(5.0));
+        ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(2700),
+                BigDecimal.valueOf(5.0));
         ElectricityReading otherReading = new ElectricityReading(Instant.now(), BigDecimal.valueOf(20.0));
         meterReadingService.storeReadings(SMART_METER_ID, Arrays.asList(electricityReading, otherReading));
 
@@ -92,13 +96,15 @@ public class PricePlanComparatorControllerTest {
         expectedPricePlanToCost.add(new AbstractMap.SimpleEntry<>(PRICE_PLAN_2_ID, BigDecimal.valueOf(16.7)));
         expectedPricePlanToCost.add(new AbstractMap.SimpleEntry<>(PRICE_PLAN_3_ID, BigDecimal.valueOf(33.4)));
 
-        assertThat(controller.recommendCheapestPricePlans(SMART_METER_ID, 2).getBody()).isEqualTo(expectedPricePlanToCost);
+        assertThat(controller.recommendCheapestPricePlans(SMART_METER_ID, 2).getBody())
+                .isEqualTo(expectedPricePlanToCost);
     }
 
     @Test
     public void shouldRecommendCheapestPricePlansMoreThanLimitAvailableForMeterUsage() throws Exception {
 
-        ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(3600), BigDecimal.valueOf(25.0));
+        ElectricityReading electricityReading = new ElectricityReading(Instant.now().minusSeconds(3600),
+                BigDecimal.valueOf(25.0));
         ElectricityReading otherReading = new ElectricityReading(Instant.now(), BigDecimal.valueOf(3.0));
         meterReadingService.storeReadings(SMART_METER_ID, Arrays.asList(electricityReading, otherReading));
 
@@ -107,11 +113,13 @@ public class PricePlanComparatorControllerTest {
         expectedPricePlanToCost.add(new AbstractMap.SimpleEntry<>(PRICE_PLAN_3_ID, BigDecimal.valueOf(28.0)));
         expectedPricePlanToCost.add(new AbstractMap.SimpleEntry<>(PRICE_PLAN_1_ID, BigDecimal.valueOf(140.0)));
 
-        assertThat(controller.recommendCheapestPricePlans(SMART_METER_ID, 5).getBody()).isEqualTo(expectedPricePlanToCost);
+        assertThat(controller.recommendCheapestPricePlans(SMART_METER_ID, 5).getBody())
+                .isEqualTo(expectedPricePlanToCost);
     }
 
     @Test
     public void givenNoMatchingMeterIdShouldReturnNotFound() {
-        assertThat(controller.calculatedCostForEachPricePlan("not-found").getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(controller.calculatedCostForEachPricePlan("not-found").getStatusCode())
+                .isEqualTo(HttpStatus.NOT_FOUND);
     }
 }

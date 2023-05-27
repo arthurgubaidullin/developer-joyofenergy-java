@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import uk.tw.energy.service.AccountService;
+
+import uk.tw.energy.accounts.AccountService;
 import uk.tw.energy.service.PricePlanService;
 
 import java.math.BigDecimal;
@@ -34,8 +35,8 @@ public class PricePlanComparatorController {
     @GetMapping("/compare-all/{smartMeterId}")
     public ResponseEntity<Map<String, Object>> calculatedCostForEachPricePlan(@PathVariable String smartMeterId) {
         String pricePlanId = accountService.getPricePlanIdForSmartMeterId(smartMeterId);
-        Optional<Map<String, BigDecimal>> consumptionsForPricePlans =
-                pricePlanService.getConsumptionCostOfElectricityReadingsForEachPricePlan(smartMeterId);
+        Optional<Map<String, BigDecimal>> consumptionsForPricePlans = pricePlanService
+                .getConsumptionCostOfElectricityReadingsForEachPricePlan(smartMeterId);
 
         if (!consumptionsForPricePlans.isPresent()) {
             return ResponseEntity.notFound().build();
@@ -51,16 +52,18 @@ public class PricePlanComparatorController {
     }
 
     @GetMapping("/recommend/{smartMeterId}")
-    public ResponseEntity<List<Map.Entry<String, BigDecimal>>> recommendCheapestPricePlans(@PathVariable String smartMeterId,
-                                                                                           @RequestParam(value = "limit", required = false) Integer limit) {
-        Optional<Map<String, BigDecimal>> consumptionsForPricePlans =
-                pricePlanService.getConsumptionCostOfElectricityReadingsForEachPricePlan(smartMeterId);
+    public ResponseEntity<List<Map.Entry<String, BigDecimal>>> recommendCheapestPricePlans(
+            @PathVariable String smartMeterId,
+            @RequestParam(value = "limit", required = false) Integer limit) {
+        Optional<Map<String, BigDecimal>> consumptionsForPricePlans = pricePlanService
+                .getConsumptionCostOfElectricityReadingsForEachPricePlan(smartMeterId);
 
         if (!consumptionsForPricePlans.isPresent()) {
             return ResponseEntity.notFound().build();
         }
 
-        List<Map.Entry<String, BigDecimal>> recommendations = new ArrayList<>(consumptionsForPricePlans.get().entrySet());
+        List<Map.Entry<String, BigDecimal>> recommendations = new ArrayList<>(
+                consumptionsForPricePlans.get().entrySet());
         recommendations.sort(Comparator.comparing(Map.Entry::getValue));
 
         if (limit != null && limit < recommendations.size()) {
