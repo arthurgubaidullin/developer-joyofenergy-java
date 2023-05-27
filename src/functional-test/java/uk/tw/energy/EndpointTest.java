@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import uk.tw.energy.builders.MeterReadingsBuilder;
-import uk.tw.energy.domain.MeterReadings;
+import uk.tw.energy.meter.reading.MeterReadings;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -49,7 +49,8 @@ public class EndpointTest {
         String smartMeterId = "bob";
         populateMeterReadingsForMeter(smartMeterId);
 
-        ResponseEntity<String> response = restTemplate.getForEntity("/price-plans/compare-all/" + smartMeterId, String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity("/price-plans/compare-all/" + smartMeterId,
+                String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
@@ -59,8 +60,8 @@ public class EndpointTest {
         String smartMeterId = "bob";
         populateMeterReadingsForMeter(smartMeterId);
 
-        ResponseEntity<String> response =
-                restTemplate.getForEntity("/price-plans/recommend/" + smartMeterId + "?limit=2", String.class);
+        ResponseEntity<String> response = restTemplate
+                .getForEntity("/price-plans/recommend/" + smartMeterId + "?limit=2", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 

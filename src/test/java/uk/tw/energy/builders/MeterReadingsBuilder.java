@@ -1,8 +1,8 @@
 package uk.tw.energy.builders;
 
-import uk.tw.energy.domain.MeterReadings;
 import uk.tw.energy.meter.reading.ElectricityReading;
 import uk.tw.energy.meter.reading.ElectricityReadingsGenerator;
+import uk.tw.energy.meter.reading.MeterReadings;
 
 import java.util.ArrayList;
 import java.util.List;
