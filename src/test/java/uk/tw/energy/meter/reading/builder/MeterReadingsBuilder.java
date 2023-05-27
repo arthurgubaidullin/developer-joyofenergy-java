@@ -1,6 +1,6 @@
 package uk.tw.energy.meter.reading.builder;
 
-import uk.tw.energy.meter.reading.domain.ElectricityReadingDto;
+import uk.tw.energy.meter.reading.electricity_reading_dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.generator.ElectricityReadingsGenerator;
 import uk.tw.energy.meter.reading.store.MeterReadingsDto;
 
