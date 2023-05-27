@@ -1,4 +1,4 @@
-package uk.tw.energy.price.plan;
+package uk.tw.energy.price.plan.rest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import uk.tw.energy.accounts.AccountService;
 import uk.tw.energy.meter.reading.domain.ElectricityReading;
 import uk.tw.energy.meter.reading.service.MeterReadingService;
-import uk.tw.energy.price.plan.PricePlanComparatorController;
 import uk.tw.energy.price.plan.PricePlanService;
 import uk.tw.energy.price.plan.domain.PricePlan;
 
