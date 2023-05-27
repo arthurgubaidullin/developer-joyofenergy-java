@@ -3,6 +3,7 @@ package uk.tw.energy.service;
 import org.springframework.stereotype.Service;
 import uk.tw.energy.domain.ElectricityReading;
 import uk.tw.energy.domain.PricePlan;
+import uk.tw.energy.meter.reading.MeterReadingService;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -24,7 +25,8 @@ public class PricePlanService {
         this.meterReadingService = meterReadingService;
     }
 
-    public Optional<Map<String, BigDecimal>> getConsumptionCostOfElectricityReadingsForEachPricePlan(String smartMeterId) {
+    public Optional<Map<String, BigDecimal>> getConsumptionCostOfElectricityReadingsForEachPricePlan(
+            String smartMeterId) {
         Optional<List<ElectricityReading>> electricityReadings = meterReadingService.getReadings(smartMeterId);
 
         if (!electricityReadings.isPresent()) {
