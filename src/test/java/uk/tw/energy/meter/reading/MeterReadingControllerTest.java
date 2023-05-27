@@ -4,10 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
-import uk.tw.energy.meter.reading.MeterReadingController;
 import uk.tw.energy.meter.reading.MeterReadingService;
 import uk.tw.energy.meter.reading.domain.ElectricityReading;
 import uk.tw.energy.meter.reading.domain.MeterReadings;
+import uk.tw.energy.meter.reading.rest.MeterReadingController;
 
 import java.util.ArrayList;
 import java.util.Collections;

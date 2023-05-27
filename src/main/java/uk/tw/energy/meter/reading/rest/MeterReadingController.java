@@ -1,4 +1,4 @@
-package uk.tw.energy.meter.reading;
+package uk.tw.energy.meter.reading.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import uk.tw.energy.meter.reading.MeterReadingService;
 import uk.tw.energy.meter.reading.domain.ElectricityReading;
 import uk.tw.energy.meter.reading.domain.MeterReadings;
 
