@@ -4,15 +4,15 @@ import java.util.List;
 
 import uk.tw.energy.meter.reading.domain.ElectricityReading;
 
-public class MeterReadings {
+public class MeterReadingsDto {
 
     private List<ElectricityReading> electricityReadings;
     private String smartMeterId;
 
-    public MeterReadings() {
+    public MeterReadingsDto() {
     }
 
-    public MeterReadings(String smartMeterId, List<ElectricityReading> electricityReadings) {
+    public MeterReadingsDto(String smartMeterId, List<ElectricityReading> electricityReadings) {
         this.smartMeterId = smartMeterId;
         this.electricityReadings = electricityReadings;
     }
