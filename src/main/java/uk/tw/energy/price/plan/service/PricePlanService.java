@@ -2,7 +2,7 @@ package uk.tw.energy.price.plan.service;
 
 import org.springframework.stereotype.Service;
 
-import uk.tw.energy.meter.reading.electricity_reading_dto.ElectricityReadingDto;
+import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.service.MeterReadingService;
 import uk.tw.energy.price.plan.domain.PricePlan;
 

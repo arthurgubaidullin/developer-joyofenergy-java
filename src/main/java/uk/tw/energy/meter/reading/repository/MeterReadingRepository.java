@@ -2,7 +2,7 @@ package uk.tw.energy.meter.reading.repository;
 
 import org.springframework.stereotype.Repository;
 
-import uk.tw.energy.meter.reading.electricity_reading_dto.ElectricityReadingDto;
+import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 
 import java.util.ArrayList;
 import java.util.List;
