@@ -1,9 +1,7 @@
-package uk.tw.energy.accounts;
+package uk.tw.energy.accounts.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import uk.tw.energy.accounts.AccountService;
 
 import java.util.HashMap;
 import java.util.Map;

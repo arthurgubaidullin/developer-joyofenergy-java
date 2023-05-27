@@ -1,4 +1,4 @@
-package uk.tw.energy.accounts;
+package uk.tw.energy.accounts.service;
 
 import org.springframework.stereotype.Service;
 
