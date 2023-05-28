@@ -1,34 +1,39 @@
 package uk.tw.energy.meter.reading.rest;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpStatus;
-
-import uk.tw.energy.meter.reading.builder.MeterReadingsBuilder;
-import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
-import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
-import uk.tw.energy.meter.reading.service.MeterReadingService;
-import uk.tw.energy.meter.reading.store.MeterReadingsDto;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+
+import uk.tw.energy.meter.reading.builder.MeterReadingsBuilder;
+import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
+import uk.tw.energy.meter.reading.get.GetMeterReading;
+import uk.tw.energy.meter.reading.get.GetMeterReadingService;
+import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
+import uk.tw.energy.meter.reading.store.MeterReadingsDto;
+import uk.tw.energy.meter.reading.store.StoreMeterReading;
+import uk.tw.energy.meter.reading.store.StoreMeterReadingService;
 
 public class MeterReadingControllerTest {
 
     private static final String SMART_METER_ID = "10101010";
     private MeterReadingController meterReadingController;
-    private MeterReadingService meterReadingService;
     private MeterReadingRepository meterReadingRepository;
+    private GetMeterReadingService getMeterReading;
+    private StoreMeterReadingService storeMeterReading;
 
     @BeforeEach
     public void setUp() {
         this.meterReadingRepository = new MeterReadingRepository(new HashMap<>());
-        this.meterReadingService = new MeterReadingService(this.meterReadingRepository);
-        this.meterReadingController = new MeterReadingController(meterReadingService);
+        this.getMeterReading = new GetMeterReading(this.meterReadingRepository);
+        this.storeMeterReading = new StoreMeterReading(this.meterReadingRepository);
+        this.meterReadingController = new MeterReadingController(this.storeMeterReading, this.getMeterReading);
     }
 
     @Test
@@ -69,7 +74,7 @@ public class MeterReadingControllerTest {
         expectedElectricityReadings.addAll(meterReadings.getElectricityReadings());
         expectedElectricityReadings.addAll(otherMeterReadings.getElectricityReadings());
 
-        assertThat(meterReadingService.getReadings(SMART_METER_ID).get()).isEqualTo(expectedElectricityReadings);
+        assertThat(getMeterReading.execute(SMART_METER_ID).get()).isEqualTo(expectedElectricityReadings);
     }
 
     @Test
@@ -85,7 +90,7 @@ public class MeterReadingControllerTest {
         meterReadingController.storeReadings(meterReadings);
         meterReadingController.storeReadings(otherMeterReadings);
 
-        assertThat(meterReadingService.getReadings(SMART_METER_ID).get())
+        assertThat(getMeterReading.execute(SMART_METER_ID).get())
                 .isEqualTo(meterReadings.getElectricityReadings());
     }
 
