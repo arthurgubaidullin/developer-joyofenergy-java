@@ -1,11 +1,5 @@
 package uk.tw.energy.price.plan.service;
 
-import org.springframework.stereotype.Service;
-
-import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
-import uk.tw.energy.meter.reading.service.MeterReadingService;
-import uk.tw.energy.price.plan.domain.PricePlan;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Duration;
@@ -15,13 +9,19 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
+import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
+import uk.tw.energy.meter.reading.get.GetMeterReadingService;
+import uk.tw.energy.price.plan.domain.PricePlan;
+
 @Service
 public class PricePlanService {
 
     private final List<PricePlan> pricePlans;
-    private final MeterReadingService meterReadingService;
+    private final GetMeterReadingService meterReadingService;
 
-    public PricePlanService(List<PricePlan> pricePlans, MeterReadingService meterReadingService) {
+    public PricePlanService(List<PricePlan> pricePlans, GetMeterReadingService meterReadingService) {
         this.pricePlans = pricePlans;
         this.meterReadingService = meterReadingService;
     }

@@ -13,7 +13,7 @@ import uk.tw.energy.meter.reading.store.StoreMeterReading;
 import uk.tw.energy.meter.reading.store.StoreMeterReadingService;
 
 @Service
-public class MeterReadingService {
+public class MeterReadingService implements GetMeterReadingService, StoreMeterReadingService {
 
     private final StoreMeterReadingService storeMeterReading;
     private final GetMeterReadingService getMeterReading;
