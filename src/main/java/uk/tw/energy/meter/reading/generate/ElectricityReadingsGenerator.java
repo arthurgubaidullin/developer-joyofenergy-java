@@ -1,4 +1,4 @@
-package uk.tw.energy.meter.reading.generator;
+package uk.tw.energy.meter.reading.generate;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

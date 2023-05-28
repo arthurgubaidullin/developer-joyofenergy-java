@@ -2,7 +2,7 @@ package uk.tw.energy.meter.reading.builder;
 
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.dto.MeterReadingsDto;
-import uk.tw.energy.meter.reading.generator.ElectricityReadingsGenerator;
+import uk.tw.energy.meter.reading.generate.ElectricityReadingsGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
