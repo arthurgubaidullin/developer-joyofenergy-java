@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import uk.tw.energy.meter.reading.dpo.ElectricityReadingDpo;
+
 @Repository
 public class MeterReadingRepository {
 

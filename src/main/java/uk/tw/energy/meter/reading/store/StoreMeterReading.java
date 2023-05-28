@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import uk.tw.energy.meter.reading.dpo.ElectricityReadingDpo;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
-import uk.tw.energy.meter.reading.repository.ElectricityReadingDpo;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 
 @Service

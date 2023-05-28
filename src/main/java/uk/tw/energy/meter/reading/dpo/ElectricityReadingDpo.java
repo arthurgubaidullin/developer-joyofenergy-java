@@ -1,4 +1,4 @@
-package uk.tw.energy.meter.reading.repository;
+package uk.tw.energy.meter.reading.dpo;
 
 import java.math.BigDecimal;
 import java.time.Instant;
