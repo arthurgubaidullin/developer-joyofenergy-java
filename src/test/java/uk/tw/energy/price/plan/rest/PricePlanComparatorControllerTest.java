@@ -12,7 +12,7 @@ import uk.tw.energy.price.plan.api.rest.PricePlanComparatorController;
 import uk.tw.energy.price.plan.compare.CompareAll;
 import uk.tw.energy.price.plan.domain.PricePlan;
 import uk.tw.energy.price.plan.recomend.RecommendPricePlans;
-import uk.tw.energy.price.plan.service.PricePlanService;
+import uk.tw.energy.price.plan.service.GetConsumptionCost;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -45,7 +45,7 @@ public class PricePlanComparatorControllerTest {
                 PricePlan pricePlan3 = new PricePlan(PRICE_PLAN_3_ID, null, BigDecimal.valueOf(2), null);
 
                 List<PricePlan> pricePlans = Arrays.asList(pricePlan1, pricePlan2, pricePlan3);
-                PricePlanService tariffService = new PricePlanService(pricePlans, meterReadingService);
+                GetConsumptionCost tariffService = new GetConsumptionCost(pricePlans, meterReadingService);
 
                 Map<String, String> meterToTariffs = new HashMap<>();
                 meterToTariffs.put(SMART_METER_ID, PRICE_PLAN_1_ID);

@@ -14,12 +14,12 @@ import uk.tw.energy.price.plan.calculate.CalculateCost;
 import uk.tw.energy.price.plan.domain.PricePlan;
 
 @Service
-public class PricePlanService {
+public class GetConsumptionCost {
 
     private final List<PricePlan> pricePlans;
     private final GetMeterReadingService meterReadingService;
 
-    public PricePlanService(List<PricePlan> pricePlans, GetMeterReadingService meterReadingService) {
+    public GetConsumptionCost(List<PricePlan> pricePlans, GetMeterReadingService meterReadingService) {
         this.pricePlans = pricePlans;
         this.meterReadingService = meterReadingService;
     }

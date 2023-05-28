@@ -8,17 +8,17 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import uk.tw.energy.account.service.AccountService;
-import uk.tw.energy.price.plan.service.PricePlanService;
+import uk.tw.energy.price.plan.service.GetConsumptionCost;
 
 @Service
 public class CompareAll {
     public final static String PRICE_PLAN_ID_KEY = "pricePlanId";
     public final static String PRICE_PLAN_COMPARISONS_KEY = "pricePlanComparisons";
 
-    private final PricePlanService pricePlanService;
+    private final GetConsumptionCost pricePlanService;
     private final AccountService accountService;
 
-    public CompareAll(PricePlanService pricePlanService, AccountService accountService) {
+    public CompareAll(GetConsumptionCost pricePlanService, AccountService accountService) {
         this.pricePlanService = pricePlanService;
         this.accountService = accountService;
     }

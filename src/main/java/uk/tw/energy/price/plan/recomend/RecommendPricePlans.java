@@ -9,14 +9,14 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import uk.tw.energy.price.plan.service.PricePlanService;
+import uk.tw.energy.price.plan.service.GetConsumptionCost;
 
 @Service
 public class RecommendPricePlans {
 
-    private final PricePlanService pricePlanService;
+    private final GetConsumptionCost pricePlanService;
 
-    public RecommendPricePlans(PricePlanService pricePlanService) {
+    public RecommendPricePlans(GetConsumptionCost pricePlanService) {
         this.pricePlanService = pricePlanService;
     }
 
