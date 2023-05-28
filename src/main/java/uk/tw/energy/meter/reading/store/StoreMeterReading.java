@@ -1,10 +1,12 @@
 package uk.tw.energy.meter.reading.store;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
+import uk.tw.energy.meter.reading.repository.ElectricityReadingDpo;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 
 @Service
@@ -17,6 +19,9 @@ public class StoreMeterReading implements StoreMeterReadingService {
     }
 
     public void storeReadings(String smartMeterId, List<ElectricityReadingDto> electricityReadings) {
-        this.meterReadingRepository.storeReadings(smartMeterId, electricityReadings);
+        this.meterReadingRepository.storeReadings(smartMeterId,
+                electricityReadings.stream()
+                        .map(dpo -> new ElectricityReadingDpo(dpo.getTime(), dpo.getReading()))
+                        .collect(Collectors.toList()));
     }
 }

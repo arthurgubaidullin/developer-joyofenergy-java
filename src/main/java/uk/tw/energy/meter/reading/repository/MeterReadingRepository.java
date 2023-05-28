@@ -1,28 +1,26 @@
 package uk.tw.energy.meter.reading.repository;
 
-import org.springframework.stereotype.Repository;
-
-import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
 @Repository
 public class MeterReadingRepository {
 
-    private final Map<String, List<ElectricityReadingDto>> meterAssociatedReadings;
+    private final Map<String, List<ElectricityReadingDpo>> meterAssociatedReadings;
 
-    public MeterReadingRepository(Map<String, List<ElectricityReadingDto>> meterAssociatedReadings) {
+    public MeterReadingRepository(Map<String, List<ElectricityReadingDpo>> meterAssociatedReadings) {
         this.meterAssociatedReadings = meterAssociatedReadings;
     }
 
-    public Optional<List<ElectricityReadingDto>> getReadings(String smartMeterId) {
+    public Optional<List<ElectricityReadingDpo>> getReadings(String smartMeterId) {
         return Optional.ofNullable(meterAssociatedReadings.get(smartMeterId));
     }
 
-    public void storeReadings(String smartMeterId, List<ElectricityReadingDto> electricityReadings) {
+    public void storeReadings(String smartMeterId, List<ElectricityReadingDpo> electricityReadings) {
         if (!meterAssociatedReadings.containsKey(smartMeterId)) {
             meterAssociatedReadings.put(smartMeterId, new ArrayList<>());
         }
