@@ -11,14 +11,14 @@ import uk.tw.energy.account.service.AccountService;
 import uk.tw.energy.price.plan.service.PricePlanService;
 
 @Service
-public class CompareAllService {
+public class CompareAll {
     public final static String PRICE_PLAN_ID_KEY = "pricePlanId";
     public final static String PRICE_PLAN_COMPARISONS_KEY = "pricePlanComparisons";
 
     private final PricePlanService pricePlanService;
     private final AccountService accountService;
 
-    public CompareAllService(PricePlanService pricePlanService, AccountService accountService) {
+    public CompareAll(PricePlanService pricePlanService, AccountService accountService) {
         this.pricePlanService = pricePlanService;
         this.accountService = accountService;
     }

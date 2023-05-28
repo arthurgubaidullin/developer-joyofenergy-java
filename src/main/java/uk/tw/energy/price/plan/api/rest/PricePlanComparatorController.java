@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import uk.tw.energy.price.plan.compare.CompareAllService;
+import uk.tw.energy.price.plan.compare.CompareAll;
 import uk.tw.energy.price.plan.recomend.RecommendPricePlans;
 
 @RestController
@@ -23,11 +23,11 @@ public class PricePlanComparatorController {
     public final static String PRICE_PLAN_ID_KEY = "pricePlanId";
     public final static String PRICE_PLAN_COMPARISONS_KEY = "pricePlanComparisons";
 
-    private final CompareAllService compareAllService;
+    private final CompareAll compareAllService;
     private final RecommendPricePlans recommendPricePlans;
 
     public PricePlanComparatorController(
-            CompareAllService compareAllService,
+            CompareAll compareAllService,
             RecommendPricePlans recommendPricePlans) {
         this.compareAllService = compareAllService;
         this.recommendPricePlans = recommendPricePlans;

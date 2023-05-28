@@ -9,7 +9,7 @@ import uk.tw.energy.meter.reading.api.MeterReadingService;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 import uk.tw.energy.price.plan.api.rest.PricePlanComparatorController;
-import uk.tw.energy.price.plan.compare.CompareAllService;
+import uk.tw.energy.price.plan.compare.CompareAll;
 import uk.tw.energy.price.plan.domain.PricePlan;
 import uk.tw.energy.price.plan.recomend.RecommendPricePlans;
 import uk.tw.energy.price.plan.service.PricePlanService;
@@ -50,7 +50,7 @@ public class PricePlanComparatorControllerTest {
                 Map<String, String> meterToTariffs = new HashMap<>();
                 meterToTariffs.put(SMART_METER_ID, PRICE_PLAN_1_ID);
                 accountService = new AccountService(meterToTariffs);
-                CompareAllService compareAllService = new CompareAllService(tariffService, accountService);
+                CompareAll compareAllService = new CompareAll(tariffService, accountService);
                 RecommendPricePlans recommendPricePlans = new RecommendPricePlans(tariffService);
 
                 controller = new PricePlanComparatorController(compareAllService, recommendPricePlans);
