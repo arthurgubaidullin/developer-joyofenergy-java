@@ -1,4 +1,4 @@
-package uk.tw.energy.meter.reading.store;
+package uk.tw.energy.meter.reading.api;
 
 import java.util.List;
 
