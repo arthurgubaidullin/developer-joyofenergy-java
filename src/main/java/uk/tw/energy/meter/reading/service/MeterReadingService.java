@@ -24,7 +24,7 @@ public class MeterReadingService {
     }
 
     public Optional<List<ElectricityReadingDto>> getReadings(String smartMeterId) {
-        return this.getMeterReading.execute(smartMeterId);
+        return this.getMeterReading.getReadings(smartMeterId);
     }
 
     public void storeReadings(String smartMeterId, List<ElectricityReadingDto> electricityReadings) {

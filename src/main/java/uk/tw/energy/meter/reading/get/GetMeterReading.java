@@ -17,7 +17,7 @@ public class GetMeterReading implements GetMeterReadingService {
         this.repository = repository;
     }
 
-    public Optional<List<ElectricityReadingDto>> execute(String smartMeterId) {
+    public Optional<List<ElectricityReadingDto>> getReadings(String smartMeterId) {
         return this.repository.getReadings(smartMeterId);
     }
 

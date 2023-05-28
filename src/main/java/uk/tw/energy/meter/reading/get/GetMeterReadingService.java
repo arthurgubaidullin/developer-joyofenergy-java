@@ -10,6 +10,6 @@ import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 @Service
 public interface GetMeterReadingService {
 
-    public Optional<List<ElectricityReadingDto>> execute(String smartMeterId);
+    public Optional<List<ElectricityReadingDto>> getReadings(String smartMeterId);
 
 }
