@@ -1,12 +1,10 @@
-package uk.tw.energy.meter.reading.service;
+package uk.tw.energy.meter.reading.api;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import uk.tw.energy.meter.reading.api.GetMeterReadingService;
-import uk.tw.energy.meter.reading.api.StoreMeterReadingService;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.get.GetMeterReading;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;

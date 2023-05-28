@@ -3,6 +3,7 @@ package uk.tw.energy.meter.reading.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import uk.tw.energy.meter.reading.api.MeterReadingService;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 
 import java.util.ArrayList;
