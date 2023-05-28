@@ -22,7 +22,7 @@ public class StoreMeterReading implements StoreMeterReadingService {
     public void storeReadings(String smartMeterId, List<ElectricityReadingDto> electricityReadings) {
         this.meterReadingRepository.storeReadings(smartMeterId,
                 electricityReadings.stream()
-                        .map(dpo -> new ElectricityReadingDpo(dpo.getTime(), dpo.getReading()))
+                        .map(dto -> new ElectricityReadingDpo(dto.getTime(), dto.getReading()))
                         .collect(Collectors.toList()));
     }
 }
