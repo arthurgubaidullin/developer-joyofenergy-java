@@ -1,4 +1,4 @@
-package uk.tw.energy.price.plan.service;
+package uk.tw.energy.price.plan.get;
 
 import java.math.BigDecimal;
 import java.util.List;

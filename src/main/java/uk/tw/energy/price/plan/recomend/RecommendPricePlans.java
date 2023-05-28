@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import uk.tw.energy.price.plan.service.GetConsumptionCost;
+import uk.tw.energy.price.plan.get.GetConsumptionCost;
 
 @Service
 public class RecommendPricePlans {
