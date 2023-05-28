@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uk.tw.energy.meter.reading.api.GetMeterReadingService;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
-import uk.tw.energy.meter.reading.store.MeterReadingsDto;
+import uk.tw.energy.meter.reading.dto.MeterReadingsDto;
 import uk.tw.energy.meter.reading.store.StoreMeterReadingService;
 
 @RestController

@@ -1,8 +1,6 @@
-package uk.tw.energy.meter.reading.store;
+package uk.tw.energy.meter.reading.dto;
 
 import java.util.List;
-
-import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 
 public class MeterReadingsDto {
 
