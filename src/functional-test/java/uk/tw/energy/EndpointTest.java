@@ -2,6 +2,8 @@ package uk.tw.energy;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,8 +13,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import uk.tw.energy.builders.MeterReadingsBuilder;
-import uk.tw.energy.domain.MeterReadings;
+
+import uk.tw.energy.meter.reading.api.GenerateReadingsService;
+import uk.tw.energy.meter.reading.builder.MeterReadingsBuilder;
+import uk.tw.energy.meter.reading.dto.MeterReadingsDto;
+import uk.tw.energy.meter.reading.generate.ElectricityReadingsGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,10 +28,17 @@ public class EndpointTest {
     private TestRestTemplate restTemplate;
     @Autowired
     private ObjectMapper mapper;
+    private GenerateReadingsService generateReadingsService;
+
+    @BeforeEach
+    public void setUp() {
+        this.generateReadingsService = new ElectricityReadingsGenerator();
+    }
 
     @Test
     public void shouldStoreReadings() throws JsonProcessingException {
-        MeterReadings meterReadings = new MeterReadingsBuilder().generateElectricityReadings().build();
+        MeterReadingsDto meterReadings = new MeterReadingsBuilder(generateReadingsService)
+                .generateElectricityReadings().build();
         HttpEntity<String> entity = getStringHttpEntity(meterReadings);
 
         ResponseEntity<String> response = restTemplate.postForEntity("/readings/store", entity, String.class);
@@ -49,7 +61,8 @@ public class EndpointTest {
         String smartMeterId = "bob";
         populateMeterReadingsForMeter(smartMeterId);
 
-        ResponseEntity<String> response = restTemplate.getForEntity("/price-plans/compare-all/" + smartMeterId, String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity("/price-plans/compare-all/" + smartMeterId,
+                String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
@@ -59,8 +72,8 @@ public class EndpointTest {
         String smartMeterId = "bob";
         populateMeterReadingsForMeter(smartMeterId);
 
-        ResponseEntity<String> response =
-                restTemplate.getForEntity("/price-plans/recommend/" + smartMeterId + "?limit=2", String.class);
+        ResponseEntity<String> response = restTemplate
+                .getForEntity("/price-plans/recommend/" + smartMeterId + "?limit=2", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
@@ -72,7 +85,8 @@ public class EndpointTest {
     }
 
     private void populateMeterReadingsForMeter(String smartMeterId) throws JsonProcessingException {
-        MeterReadings readings = new MeterReadingsBuilder().setSmartMeterId(smartMeterId)
+        MeterReadingsDto readings = new MeterReadingsBuilder(generateReadingsService)
+                .setSmartMeterId(smartMeterId)
                 .generateElectricityReadings(20)
                 .build();
 

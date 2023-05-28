@@ -1,14 +1,6 @@
 package uk.tw.energy;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import uk.tw.energy.domain.ElectricityReading;
-import uk.tw.energy.domain.PricePlan;
-import uk.tw.energy.generator.ElectricityReadingsGenerator;
+import static java.util.Collections.emptyList;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,7 +8,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.Collections.emptyList;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import uk.tw.energy.meter.reading.api.GenerateReadingsService;
+import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
+import uk.tw.energy.meter.reading.generate.ElectricityReadingsGenerator;
+import uk.tw.energy.price.plan.domain.PricePlan;
 
 @Configuration
 public class SeedingApplicationDataConfiguration {
@@ -35,9 +38,9 @@ public class SeedingApplicationDataConfiguration {
     }
 
     @Bean
-    public Map<String, List<ElectricityReading>> perMeterElectricityReadings() {
-        final Map<String, List<ElectricityReading>> readings = new HashMap<>();
-        final ElectricityReadingsGenerator electricityReadingsGenerator = new ElectricityReadingsGenerator();
+    public Map<String, List<ElectricityReadingDto>> perMeterElectricityReadings() {
+        final Map<String, List<ElectricityReadingDto>> readings = new HashMap<>();
+        final GenerateReadingsService electricityReadingsGenerator = new ElectricityReadingsGenerator();
         smartMeterToPricePlanAccounts()
                 .keySet()
                 .forEach(smartMeterId -> readings.put(smartMeterId, electricityReadingsGenerator.generate(20)));
