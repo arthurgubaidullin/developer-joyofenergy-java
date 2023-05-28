@@ -8,9 +8,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
+import uk.tw.energy.meter.reading.api.GenerateReadingsService;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 
-public class ElectricityReadingsGenerator {
+public class ElectricityReadingsGenerator implements GenerateReadingsService {
 
     public List<ElectricityReadingDto> generate(int number) {
         List<ElectricityReadingDto> readings = new ArrayList<>();
