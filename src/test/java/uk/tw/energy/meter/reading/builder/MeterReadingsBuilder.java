@@ -1,5 +1,6 @@
 package uk.tw.energy.meter.reading.builder;
 
+import uk.tw.energy.meter.reading.api.GenerateReadingsService;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.dto.MeterReadingsDto;
 import uk.tw.energy.meter.reading.generate.ElectricityReadingsGenerator;
@@ -24,7 +25,7 @@ public class MeterReadingsBuilder {
     }
 
     public MeterReadingsBuilder generateElectricityReadings(int number) {
-        ElectricityReadingsGenerator readingsBuilder = new ElectricityReadingsGenerator();
+        GenerateReadingsService readingsBuilder = new ElectricityReadingsGenerator();
         this.electricityReadings = readingsBuilder.generate(number);
         return this;
     }
