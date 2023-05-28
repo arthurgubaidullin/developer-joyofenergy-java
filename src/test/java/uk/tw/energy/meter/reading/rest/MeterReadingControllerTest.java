@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 
 import uk.tw.energy.meter.reading.api.GetMeterReadingService;
 import uk.tw.energy.meter.reading.api.StoreMeterReadingService;
+import uk.tw.energy.meter.reading.api.rest.MeterReadingController;
 import uk.tw.energy.meter.reading.builder.MeterReadingsBuilder;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.dto.MeterReadingsDto;

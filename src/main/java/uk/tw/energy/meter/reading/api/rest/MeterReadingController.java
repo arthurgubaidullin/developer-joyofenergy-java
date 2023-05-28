@@ -1,4 +1,4 @@
-package uk.tw.energy.meter.reading.rest;
+package uk.tw.energy.meter.reading.api.rest;
 
 import java.util.List;
 import java.util.Optional;
