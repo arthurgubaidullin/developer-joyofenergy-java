@@ -3,7 +3,9 @@ package uk.tw.energy.meter.reading.dto;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-public class ElectricityReadingDto {
+import uk.tw.energy.price.plan.calculate.ElectricityReading;
+
+public class ElectricityReadingDto implements ElectricityReading {
 
     private Instant time;
     private BigDecimal reading; // kW

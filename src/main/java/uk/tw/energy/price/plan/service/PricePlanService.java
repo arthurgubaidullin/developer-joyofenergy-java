@@ -26,7 +26,8 @@ public class PricePlanService {
 
     public Optional<Map<String, BigDecimal>> getConsumptionCostOfElectricityReadingsForEachPricePlan(
             String smartMeterId) {
-        Optional<List<ElectricityReadingDto>> electricityReadings = meterReadingService.getReadings(smartMeterId);
+        Optional<List<ElectricityReadingDto>> electricityReadings = meterReadingService
+                .getReadings(smartMeterId);
 
         if (!electricityReadings.isPresent()) {
             return Optional.empty();
