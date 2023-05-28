@@ -11,6 +11,7 @@ import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 import uk.tw.energy.price.plan.api.rest.PricePlanComparatorController;
 import uk.tw.energy.price.plan.compare.CompareAllService;
 import uk.tw.energy.price.plan.domain.PricePlan;
+import uk.tw.energy.price.plan.recomend.RecommendPricePlans;
 import uk.tw.energy.price.plan.service.PricePlanService;
 
 import java.math.BigDecimal;
@@ -50,8 +51,9 @@ public class PricePlanComparatorControllerTest {
                 meterToTariffs.put(SMART_METER_ID, PRICE_PLAN_1_ID);
                 accountService = new AccountService(meterToTariffs);
                 CompareAllService compareAllService = new CompareAllService(tariffService, accountService);
+                RecommendPricePlans recommendPricePlans = new RecommendPricePlans(tariffService);
 
-                controller = new PricePlanComparatorController(tariffService, compareAllService);
+                controller = new PricePlanComparatorController(compareAllService, recommendPricePlans);
         }
 
         @Test

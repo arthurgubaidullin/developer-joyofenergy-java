@@ -1,10 +1,9 @@
 package uk.tw.energy.price.plan.api.rest;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uk.tw.energy.price.plan.compare.CompareAllService;
-import uk.tw.energy.price.plan.service.PricePlanService;
+import uk.tw.energy.price.plan.recomend.RecommendPricePlans;
 
 @RestController
 @RequestMapping("/price-plans")
@@ -23,14 +22,15 @@ public class PricePlanComparatorController {
 
     public final static String PRICE_PLAN_ID_KEY = "pricePlanId";
     public final static String PRICE_PLAN_COMPARISONS_KEY = "pricePlanComparisons";
-    private final PricePlanService pricePlanService;
+
     private final CompareAllService compareAllService;
+    private final RecommendPricePlans recommendPricePlans;
 
     public PricePlanComparatorController(
-            PricePlanService pricePlanService,
-            CompareAllService compareAllService) {
-        this.pricePlanService = pricePlanService;
+            CompareAllService compareAllService,
+            RecommendPricePlans recommendPricePlans) {
         this.compareAllService = compareAllService;
+        this.recommendPricePlans = recommendPricePlans;
     }
 
     @GetMapping("/compare-all/{smartMeterId}")
@@ -48,21 +48,11 @@ public class PricePlanComparatorController {
     public ResponseEntity<List<Map.Entry<String, BigDecimal>>> recommendCheapestPricePlans(
             @PathVariable String smartMeterId,
             @RequestParam(value = "limit", required = false) Integer limit) {
-        Optional<Map<String, BigDecimal>> consumptionsForPricePlans = pricePlanService
-                .getConsumptionCostOfElectricityReadingsForEachPricePlan(smartMeterId);
 
-        if (!consumptionsForPricePlans.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
+        Optional<List<Entry<String, BigDecimal>>> result = recommendPricePlans.recommendCheapestPricePlans(
+                smartMeterId,
+                limit);
 
-        List<Map.Entry<String, BigDecimal>> recommendations = new ArrayList<>(
-                consumptionsForPricePlans.get().entrySet());
-        recommendations.sort(Comparator.comparing(Map.Entry::getValue));
-
-        if (limit != null && limit < recommendations.size()) {
-            recommendations = recommendations.subList(0, limit);
-        }
-
-        return ResponseEntity.ok(recommendations);
+        return result.isPresent() ? ResponseEntity.ok(result.get()) : ResponseEntity.notFound().build();
     }
 }
