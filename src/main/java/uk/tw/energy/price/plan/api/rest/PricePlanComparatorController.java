@@ -1,4 +1,4 @@
-package uk.tw.energy.price.plan.rest;
+package uk.tw.energy.price.plan.api.rest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
