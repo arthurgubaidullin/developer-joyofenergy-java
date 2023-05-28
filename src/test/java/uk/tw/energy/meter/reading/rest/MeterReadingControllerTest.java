@@ -11,10 +11,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
+import uk.tw.energy.meter.reading.api.GetMeterReadingService;
 import uk.tw.energy.meter.reading.builder.MeterReadingsBuilder;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 import uk.tw.energy.meter.reading.get.GetMeterReading;
-import uk.tw.energy.meter.reading.get.GetMeterReadingService;
 import uk.tw.energy.meter.reading.repository.MeterReadingRepository;
 import uk.tw.energy.meter.reading.store.MeterReadingsDto;
 import uk.tw.energy.meter.reading.store.StoreMeterReading;

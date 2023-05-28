@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import uk.tw.energy.meter.reading.api.GetMeterReadingService;
 import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
-import uk.tw.energy.meter.reading.get.GetMeterReadingService;
 import uk.tw.energy.price.plan.domain.PricePlan;
 
 @Service
