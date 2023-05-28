@@ -1,5 +1,12 @@
 package uk.tw.energy.price.plan.api.rest;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,16 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import uk.tw.energy.account.service.AccountService;
+import uk.tw.energy.price.plan.compare.CompareAllService;
 import uk.tw.energy.price.plan.service.PricePlanService;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/price-plans")
@@ -25,29 +24,23 @@ public class PricePlanComparatorController {
     public final static String PRICE_PLAN_ID_KEY = "pricePlanId";
     public final static String PRICE_PLAN_COMPARISONS_KEY = "pricePlanComparisons";
     private final PricePlanService pricePlanService;
-    private final AccountService accountService;
+    private final CompareAllService compareAllService;
 
-    public PricePlanComparatorController(PricePlanService pricePlanService, AccountService accountService) {
+    public PricePlanComparatorController(
+            PricePlanService pricePlanService,
+            CompareAllService compareAllService) {
         this.pricePlanService = pricePlanService;
-        this.accountService = accountService;
+        this.compareAllService = compareAllService;
     }
 
     @GetMapping("/compare-all/{smartMeterId}")
     public ResponseEntity<Map<String, Object>> calculatedCostForEachPricePlan(@PathVariable String smartMeterId) {
-        String pricePlanId = accountService.getPricePlanIdForSmartMeterId(smartMeterId);
-        Optional<Map<String, BigDecimal>> consumptionsForPricePlans = pricePlanService
-                .getConsumptionCostOfElectricityReadingsForEachPricePlan(smartMeterId);
 
-        if (!consumptionsForPricePlans.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
+        Optional<Map<String, Object>> pricePlanComparisons = compareAllService
+                .calculatedCostForEachPricePlan(smartMeterId);
 
-        Map<String, Object> pricePlanComparisons = new HashMap<>();
-        pricePlanComparisons.put(PRICE_PLAN_ID_KEY, pricePlanId);
-        pricePlanComparisons.put(PRICE_PLAN_COMPARISONS_KEY, consumptionsForPricePlans.get());
-
-        return consumptionsForPricePlans.isPresent()
-                ? ResponseEntity.ok(pricePlanComparisons)
+        return pricePlanComparisons.isPresent()
+                ? ResponseEntity.ok(pricePlanComparisons.get())
                 : ResponseEntity.notFound().build();
     }
 
