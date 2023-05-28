@@ -9,6 +9,6 @@ import uk.tw.energy.meter.reading.dto.ElectricityReadingDto;
 @Service
 public interface StoreMeterReadingService {
 
-    public void execute(String smartMeterId, List<ElectricityReadingDto> electricityReadings);
+    public void storeReadings(String smartMeterId, List<ElectricityReadingDto> electricityReadings);
 
 }

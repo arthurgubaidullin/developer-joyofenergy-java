@@ -16,7 +16,7 @@ public class StoreMeterReading implements StoreMeterReadingService {
         this.meterReadingRepository = meterReadingRepository;
     }
 
-    public void execute(String smartMeterId, List<ElectricityReadingDto> electricityReadings) {
+    public void storeReadings(String smartMeterId, List<ElectricityReadingDto> electricityReadings) {
         this.meterReadingRepository.storeReadings(smartMeterId, electricityReadings);
     }
 }

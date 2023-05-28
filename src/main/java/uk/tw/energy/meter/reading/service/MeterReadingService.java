@@ -28,6 +28,6 @@ public class MeterReadingService {
     }
 
     public void storeReadings(String smartMeterId, List<ElectricityReadingDto> electricityReadings) {
-        storeMeterReading.execute(smartMeterId, electricityReadings);
+        storeMeterReading.storeReadings(smartMeterId, electricityReadings);
     }
 }
